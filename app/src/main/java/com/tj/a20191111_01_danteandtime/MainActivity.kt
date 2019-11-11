@@ -40,10 +40,19 @@ class MainActivity : BaseActivity() {
 
         startTimeBtn.setOnClickListener {
             var timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                startDateTimeCalendar.set
+//                startDateTimeCalendar.set(startDateTimeCalendar.get(Calendar.YEAR), startDateTimeCalendar.get(Calendar.MONTH), startDateTimeCalendar.get(Calendar.DAY_OF_MONTH), hourOfDay, minute)
+                startDateTimeCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                startDateTimeCalendar.set(Calendar.MINUTE, minute)
 
-            }, startDateTimeCalendar.get(Calendar.HOUR), startDateTimeCalendar.get(Calendar.MINUTE) )
+                var sdf = SimpleDateFormat("a h시 m분")
+
+                startTimeBtn.text = sdf.format(startDateTimeCalendar.time)
+
+            }, startDateTimeCalendar.get(Calendar.HOUR), startDateTimeCalendar.get(Calendar.MINUTE), true )
+
+            timePickerDialog.show()
         }
+
     }
 
     override fun setValues() {
