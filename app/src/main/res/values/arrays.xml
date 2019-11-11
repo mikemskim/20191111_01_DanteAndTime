@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="schedule_type">
+        <item>개인 일정</item>
+        <item>동아리 모임</item>
+        <item>업무 일정</item>
+        <item>공식 행사</item>
+    </string-array>
+</resources>
