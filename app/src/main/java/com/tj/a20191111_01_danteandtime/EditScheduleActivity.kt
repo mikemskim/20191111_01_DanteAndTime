@@ -6,6 +6,7 @@ import android.app.TimePickerDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
+import com.tj.a20191111_01_danteandtime.datas.ScheduleType
 import kotlinx.android.synthetic.main.activity_edit_schedule.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -14,6 +15,9 @@ class EditScheduleActivity : BaseActivity() {
 
     // 시작일자와 시간을 모두 저장하고 있는 캘린더 변수
     var startDateTimeCalendar = Calendar.getInstance()
+
+    var scheduleTypeList = ArrayList<ScheduleType>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +74,13 @@ class EditScheduleActivity : BaseActivity() {
     }
 
     override fun setValues() {
+        addScheduleType()
+    }
 
+    fun addScheduleType() {
+        scheduleTypeList.add(ScheduleType("개인 일정", "#FF0000"))
+        scheduleTypeList.add(ScheduleType("동아리 모임", "#00FF00"))
+        scheduleTypeList.add(ScheduleType("업무 일정", "#0000FF"))
+        scheduleTypeList.add(ScheduleType("공식 행사", "#000000"))
     }
 }
