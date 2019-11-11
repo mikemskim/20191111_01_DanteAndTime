@@ -6,6 +6,7 @@ import android.app.TimePickerDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
+import com.tj.a20191111_01_danteandtime.adapters.ScheduleTypeSpinnerAdapter
 import com.tj.a20191111_01_danteandtime.datas.ScheduleType
 import kotlinx.android.synthetic.main.activity_edit_schedule.*
 import java.text.SimpleDateFormat
@@ -17,7 +18,7 @@ class EditScheduleActivity : BaseActivity() {
     var startDateTimeCalendar = Calendar.getInstance()
 
     var scheduleTypeList = ArrayList<ScheduleType>()
-
+    var scheduleTypeSpinnerAdapter:ScheduleTypeSpinnerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +76,9 @@ class EditScheduleActivity : BaseActivity() {
 
     override fun setValues() {
         addScheduleType()
+
+        scheduleTypeSpinnerAdapter = ScheduleTypeSpinnerAdapter(this,scheduleTypeList)
+        scheduleTypeSpinner.adapter = scheduleTypeSpinnerAdapter
     }
 
     fun addScheduleType() {
