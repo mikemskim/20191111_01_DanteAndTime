@@ -1,9 +1,11 @@
 package com.tj.a20191111_01_danteandtime
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : BaseActivity() {
@@ -23,15 +25,24 @@ class MainActivity : BaseActivity() {
 
         startDateBtn.setOnClickListener {
             var datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                //
 
+                // 시작일시 변수에 선택값 반영
+                startDateTimeCalendar.set(year, month, dayOfMonth)
+
+                // 버튼에 2019-09-08 형식으로 출력
+                var sdf = SimpleDateFormat("yyyy-MM-dd (EE)")
+
+                startDateBtn.text = sdf.format(startDateTimeCalendar.time)
             }, startDateTimeCalendar.get(Calendar.YEAR), startDateTimeCalendar.get(Calendar.MONTH), startDateTimeCalendar.get(Calendar.DAY_OF_MONTH))
 
             datePickerDialog.show()
         }
 
         startTimeBtn.setOnClickListener {
+            var timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                startDateTimeCalendar.set
 
+            }, startDateTimeCalendar.get(Calendar.HOUR), startDateTimeCalendar.get(Calendar.MINUTE) )
         }
     }
 
