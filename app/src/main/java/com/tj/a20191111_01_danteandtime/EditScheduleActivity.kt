@@ -1,27 +1,41 @@
 package com.tj.a20191111_01_danteandtime
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import androidx.appcompat.app.AppCompatActivity
+import android.content.DialogInterface
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_edit_schedule.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivity : BaseActivity() {
+class EditScheduleActivity : BaseActivity() {
 
     // 시작일자와 시간을 모두 저장하고 있는 캘린더 변수
     var startDateTimeCalendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_edit_schedule)
 
         setupEvents()
         setValues()
     }
 
     override fun setupEvents() {
+
+        saveBtn.setOnClickListener {
+            var alert = AlertDialog.Builder(this)
+            alert.setTitle("저장 확인")
+            alert.setMessage("정말 일정을 저장하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
+                Toast.makeText(this, "일정을 저장했습니다.", Toast.LENGTH_SHORT).show()
+            })
+            alert.setNegativeButton("취소", null)
+
+            alert.show()
+        }
 
         startDateBtn.setOnClickListener {
             var datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
